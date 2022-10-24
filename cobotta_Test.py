@@ -5,11 +5,6 @@
 #   Date: 21.10.22
 #
 #----------------------------------------------------------------------------------------------------------------
-from Cobotta_Bauer import IHandl
-import pybcapclient.bcapclient as bcapclient
-import numpy as np
-# import cv2
-
 import pybcapclient.bcapclient as bcapclient
 
 # set IP Address , Port number and Timeout of connected RC8
