@@ -30,25 +30,25 @@ Option = ""
 hCtrl = m_bcapclient.controller_connect(Name, Provider, Machine, Option)
 print("Connect RC8")
 
-#------------------------------------------------------------------------
+# #------------------------------------------------------------------------
 
-# get Object for reading a variable from Cobotta
-# "I1" = Identifier of the variable
-IHandl = 0
-IHandl = m_bcapclient.controller_getvariable(hCtrl, "I0", "")
+# # get Object for reading a variable from Cobotta
+# # "I1" = Identifier of the variable
+# IHandl = 0
+# IHandl = m_bcapclient.controller_getvariable(hCtrl, "I0", "")
 
-# read value of a variable from Cobotta
-# "I1" = Identifier of the variable
-retI = m_bcapclient.variable_getvalue(IHandl)
+# # read value of a variable from Cobotta
+# # "I1" = Identifier of the variable
+# retI = m_bcapclient.variable_getvalue(IHandl)
 
-#------------------------------------------------------------------------
+# #------------------------------------------------------------------------
 
-# put object for writing a variable zo Cobotta
-# "I1" = Identifier of the variable
-newVal = 15
-m_bcapclient.variable_putvalue(IHandl, newVal)
+# # put object for writing a variable zo Cobotta
+# # "I1" = Identifier of the variable
+# newVal = 15
+# m_bcapclient.variable_putvalue(IHandl, newVal)
 
-#------------------------------------------------------------------------
+# #------------------------------------------------------------------------
 
 
 
