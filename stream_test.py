@@ -10,6 +10,7 @@ class CAMERA:
             logging.warning("Error connection to Webcam")  # will print a message to the console
 
         while(self.cam.isOpened()):
+            print("in loop")
             ret, frame = self.cam.read()
             cv2.imshow('Frame', frame)
 
