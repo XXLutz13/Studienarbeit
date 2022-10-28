@@ -35,7 +35,7 @@ print("Connect RC8")
 # get Object for reading a variable from Cobotta
 # "I1" = Identifier of the variable
 IHandl = 0
-IHandl = m_bcapclient.controller_getvariable(hCtrl, "I1", "")
+IHandl = m_bcapclient.controller_getvariable(hCtrl, "I0", "")
 
 # read value of a variable from Cobotta
 # "I1" = Identifier of the variable
@@ -53,9 +53,9 @@ m_bcapclient.variable_putvalue(IHandl, newVal)
 
 
 # example of how the robot access will be handled later
-I1_access = m_bcapclient.controller_getvariable(hCtrl, "I1", "")   # Object for variable access
+I90_access = m_bcapclient.controller_getvariable(hCtrl, "I90", "")   # Object for variable access
 CobottaAccess = 1   # new value
-m_bcapclient.variable_putvalue(I1_access, CobottaAccess)
+m_bcapclient.variable_putvalue(I90_access, CobottaAccess)
 
 
 P90_access = m_bcapclient.controller_getvariable(hCtrl, "P90", "")   # Object to post new Coordinates
