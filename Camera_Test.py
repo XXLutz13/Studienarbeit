@@ -29,7 +29,7 @@ class CAMERA:
 
 
 # cam1 = CAMERA(0)
-cam1 = CAMERA('http://admin:password@10.50.12.88')
+cam1 = CAMERA(0)
 cam1.image()
 
 
