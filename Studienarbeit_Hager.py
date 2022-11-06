@@ -71,8 +71,9 @@ def connect_Cobotta(IP):
 class CAMERA:
     def __init__(self, client, IP):
         # Get Camera Handler
-        camera_handler = self.client.controller_connect('N10-W02', 'CaoProv.Canon.N10-W02', '', 'Conn=eth:'+ self.IP +', Timeout=3000')
-        print ('Camera handler is {}.'.format(camera_handler))
+        self.camera_handler = client.controller_connect('N10-W02', 'CaoProv.Canon.N10-W02', '', 'Conn=eth:'+ IP +', Timeout=3000')
+        print ('Camera handler is {}.'.format(self.camera_handler))
+        self.client = client
 
     def OneShot(self):
         image = self.client.controller_execute(self.camera_handler, 'OneShotFocus', '')
