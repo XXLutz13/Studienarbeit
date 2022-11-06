@@ -61,3 +61,11 @@ m_bcapclient.variable_putvalue(I90_access, CobottaAccess)
 P90_access = m_bcapclient.controller_getvariable(hCtrl, "P90", "")   # Object to post new Coordinates
 new_coords = [0,0,0] 
 m_bcapclient.variable_putvalue(P90_access, new_coords)    # write new coordinates
+
+
+# Get Camera Handler
+camera_handler = m_bcapclient.controller_connect('N10-W02', 'CaoProv.Canon.N10-W02', '', 'Conn=eth:10.50.12.88, Timeout=3000')
+print ('Camera handler is {}.'.format(camera_handler))
+
+# OneShot
+m_bcapclient.controller_execute(camera_handler, 'OneShotFocus', '')
