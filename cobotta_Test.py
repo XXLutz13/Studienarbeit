@@ -8,8 +8,7 @@
 import pybcapclient.bcapclient as bcapclient
 import cv2
 import numpy as np
-from PIL import Image
-import PIL
+
 
 # set IP Address , Port number and Timeout of connected RC8
 host = "10.50.12.87"
@@ -78,9 +77,9 @@ image = m_bcapclient.controller_execute(camera_handler, 'OneShotFocus', '')
 variable_handler = m_bcapclient.controller_getvariable(camera_handler, 'IMAGE')
 print('IMAGE handler is {}.'.format(variable_handler))
 
-# Add variable(101)
-image_buff = m_bcapclient.variable_getvalue(variable_handler)
 
-image_buff.save('test.png')
-# data = np.asarray(image_buff)
-# cv2.imwrite('test.png', data)
+image_buff = m_bcapclient.variable_getvalue(variable_handler)
+nparr = np.frombuffer(image_buff , dtype=np.uint8)
+cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+cv2.imwrite('test.png', cv_image)
