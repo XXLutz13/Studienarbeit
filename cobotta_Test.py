@@ -6,6 +6,7 @@
 #
 #----------------------------------------------------------------------------------------------------------------
 import pybcapclient.bcapclient as bcapclient
+import cv2
 
 # set IP Address , Port number and Timeout of connected RC8
 host = "10.50.12.87"
@@ -68,4 +69,5 @@ camera_handler = m_bcapclient.controller_connect('N10-W02', 'CaoProv.Canon.N10-W
 print ('Camera handler is {}.'.format(camera_handler))
 
 # OneShot
-m_bcapclient.controller_execute(camera_handler, 'OneShotFocus', '')
+image = m_bcapclient.controller_execute(camera_handler, 'OneShotFocus', '')
+cv2.imwrite('test.png', image)
