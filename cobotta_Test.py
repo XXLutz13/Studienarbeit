@@ -70,4 +70,13 @@ print ('Camera handler is {}.'.format(camera_handler))
 
 # OneShot
 image = m_bcapclient.controller_execute(camera_handler, 'OneShotFocus', '')
-cv2.imwrite('test.png', image)
+
+# Get Variable ID
+variable_handler = m_bcapclient.controller_getvariable(camera_handler, 'IMAGE')
+print('IMAGE handler is {}.'.format(variable_handler))
+
+# Add variable(101)
+image_buff = m_bcapclient.variable_getvalue(variable_handler)
+
+
+cv2.imwrite('test.png', image_buff)
