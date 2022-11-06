@@ -15,7 +15,7 @@ import logging
 logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 import cv2
 import numpy as np
-
+from datetime import datetime
 
 
 
@@ -68,6 +68,29 @@ def connect_Cobotta(IP):
     return client, RC8
 
 
+class CAMERA:
+    def __init__(self, client, IP):
+        # Get Camera Handler
+        camera_handler = self.client.controller_connect('N10-W02', 'CaoProv.Canon.N10-W02', '', 'Conn=eth:'+ self.IP +', Timeout=3000')
+        print ('Camera handler is {}.'.format(camera_handler))
+
+    def OneShot(self):
+        image = self.client.controller_execute(self.camera_handler, 'OneShotFocus', '')
+
+        # Get Variable ID
+        variable_handler = self.client.controller_getvariable(self.camera_handler, 'IMAGE')
+        print('IMAGE handler is {}.'.format(variable_handler))
+
+
+        image_buff = self.client.variable_getvalue(variable_handler)
+
+        nparr = np.frombuffer(image_buff , dtype=np.uint8)
+        cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+        cv2.imwrite('Images/%s_bike-yellow.png'% datetime.now().strftime("%Y%m%d_%H:%M:%S"), cv_image)
+
+
+
 def get_number_of_Images():
     num_images = int(input('Number of Images: ') or '100')
     logging.info('User Input num_images: %s', num_images)
@@ -85,6 +108,9 @@ def convert_image(img):
 
 # establish Cobotta connection
 client, RC8 = connect_Cobotta('10.50.12.87')
+
+CAM = CAMERA(client=client, IP='10.50.12.88')
+CAM.OneShot()
 
 num_images = get_number_of_Images()
 
