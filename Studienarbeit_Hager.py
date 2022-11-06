@@ -68,11 +68,15 @@ def connect_Cobotta(IP):
     return client, RC8
 
 
+#----------------------------------------------------------------------------------------------------------------
+#   cobotta camera class
+#   Atributes: client = Cobotta connection
+#              IP = camera IP-adress
+#----------------------------------------------------------------------------------------------------------------
 class CAMERA:
     def __init__(self, client, IP):
         # Get Camera Handler
         self.camera_handler = client.controller_connect('N10-W02', 'CaoProv.Canon.N10-W02', '', 'Conn=eth:'+ IP +', Timeout=3000')
-        print ('Camera handler is {}.'.format(self.camera_handler))
         self.client = client
 
     def OneShot(self):
@@ -80,14 +84,12 @@ class CAMERA:
 
         # Get Variable ID
         variable_handler = self.client.controller_getvariable(self.camera_handler, 'IMAGE')
-        print('IMAGE handler is {}.'.format(variable_handler))
-
 
         image_buff = self.client.variable_getvalue(variable_handler)
-
+        # converts Cobotta image to usable numpy formate 
         nparr = np.frombuffer(image_buff , dtype=np.uint8)
         cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-
+        # save image to file
         cv2.imwrite('Images/%s_bike-yellow.png'% datetime.now().strftime("%Y%m%d_%H:%M:%S"), cv_image)
 
 
@@ -95,6 +97,7 @@ class CAMERA:
 def get_number_of_Images():
     num_images = int(input('Number of Images: ') or '100')
     logging.info('User Input num_images: %s', num_images)
+    logging.warning('User Input num_images: %s', num_images)
     return num_images
 
 
@@ -109,17 +112,16 @@ def convert_image(img):
 
 # establish Cobotta connection
 client, RC8 = connect_Cobotta('10.50.12.87')
-
+# open camera connection
 CAM = CAMERA(client=client, IP='10.50.12.88')
-CAM.OneShot()
 
 num_images = get_number_of_Images()
 
 # calculate arrays with roboter coordinates
 cords, motorStepps = coordinates(num_images)
 
-
-
+# testing camera class
+CAM.OneShot()
 
 
 
