@@ -13,6 +13,8 @@ from adafruit_motor import stepper
 
 import logging
 logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+import cv2
+import numpy as np
 
 
 
@@ -72,6 +74,14 @@ def get_number_of_Images():
     return num_images
 
 
+# converts Cobotta image to usable numpy formate 
+def convert_image(img):
+    nparry = np.frombuffer(img , dtype=np.uint8)
+    cv_image = cv2.imdecode(nparry, cv2.IMREAD_COLOR)
+    return cv_image
+
+
+
 
 # establish Cobotta connection
 client, RC8 = connect_Cobotta('10.50.12.87')
@@ -80,6 +90,9 @@ num_images = get_number_of_Images()
 
 # calculate arrays with roboter coordinates
 cords, motorStepps = coordinates(num_images)
+
+
+
 
 
 
