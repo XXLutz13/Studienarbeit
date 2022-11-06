@@ -8,6 +8,8 @@
 import pybcapclient.bcapclient as bcapclient
 import cv2
 import numpy as np
+from PIL import Image
+import PIL
 
 # set IP Address , Port number and Timeout of connected RC8
 host = "10.50.12.87"
@@ -79,5 +81,6 @@ print('IMAGE handler is {}.'.format(variable_handler))
 # Add variable(101)
 image_buff = m_bcapclient.variable_getvalue(variable_handler)
 
-data = np.asarray(image_buff)
-cv2.imwrite('test.png', data)
+image_buff.save('test.png')
+# data = np.asarray(image_buff)
+# cv2.imwrite('test.png', data)
