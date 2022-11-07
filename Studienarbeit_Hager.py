@@ -127,8 +127,49 @@ num_images = get_number_of_Images()
 # calculate arrays with roboter coordinates
 cords, motorStepps = coordinates(num_images)
 
-# testing camera class
-CAM.OneShot()
+
+I90_access = client.controller_getvariable(RC8, "I90", "")   # Object for variable access
+I91_access = client.controller_getvariable(RC8, "I91", "")   # Object for variable access
+P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post new Coordinates
+
+try:
+    for x in num_images:
+
+        new_coords = cords[x]   # new coordinates for robot
+        client.variable_putvalue(P90_access, new_coords)    # write new coordinates
+
+        # acctivate script on cobotta
+        I90 = 1   # new value
+        client.variable_putvalue(I90_access, I90) # write I90 value
+
+        move_on = 0
+
+        # wait for robot to set I91
+        while not move_on:
+            move_on = client.variable_getvalue(I91_access)  # read I91
+
+        # capturing image
+        CAM.OneShot()
+
+        # evtl delay?
+
+        # finish script on cobotta
+        I90 = 0   # new value
+        client.variable_putvalue(I90_access, I90) # write I90 value
+
+
+except KeyboardInterrupt:
+    # finish script on cobotta
+    I90 = 0   # new value
+    client.variable_putvalue(I90_access, I90) # write I90 value
+
+    client.variable_release(I90_access)
+    client.variable_release(I91_access)
+    client.variable_release(P90_access)
+    client.service_stop()
+
+    logging.error("service stoped!")
+
 
 
 
