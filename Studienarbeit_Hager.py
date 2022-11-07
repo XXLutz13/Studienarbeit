@@ -146,11 +146,12 @@ try:
         I90 = 1   # new value
         client.variable_putvalue(I90_access, I90) # write I90 value
 
-        move_on = 0
+        stepper_worker(kit.stepper1, motorStepps[x], stepper.FORWARD)   # move stepper motor 
 
+        ready = 0
         # wait for robot to set I91
-        while not move_on:
-            move_on = client.variable_getvalue(I91_access)  # read I91
+        while not ready:
+            ready = client.variable_getvalue(I91_access)  # read I91
             time.sleep(0.1)
 
         # capturing image
