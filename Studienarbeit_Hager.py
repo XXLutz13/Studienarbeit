@@ -14,10 +14,11 @@ from adafruit_motor import stepper
 import logging
 logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 import cv2
+import time
 import numpy as np
 from datetime import datetime
 
-
+kit = MotorKit()    # MotorKit Object
 
 #----------------------------------------------------------------------------------------------------------------
 #   function for calculation of Roboter coordinates
@@ -114,7 +115,10 @@ def convert_image(img):
     cv_image = cv2.imdecode(nparry, cv2.IMREAD_COLOR)
     return cv_image
 
-
+# moves stepper motor
+def stepper_worker(stepper, numsteps, direction):
+    for x in numsteps:
+         stepper.onestep(direction=direction)
 
 
 # establish Cobotta connection
@@ -147,6 +151,7 @@ try:
         # wait for robot to set I91
         while not move_on:
             move_on = client.variable_getvalue(I91_access)  # read I91
+            time.sleep(0.1)
 
         # capturing image
         CAM.OneShot()
@@ -167,6 +172,8 @@ except KeyboardInterrupt:
     client.variable_release(I91_access)
     client.variable_release(P90_access)
     client.service_stop()
+
+    kit.stepper1.release()
 
     logging.error("service stoped!")
 
