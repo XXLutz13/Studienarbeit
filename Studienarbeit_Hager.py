@@ -27,7 +27,16 @@ kit = MotorKit()    # MotorKit Object
 #   Outputs: array of coordinats: cords
 #            number of motor stepps: num_steps
 #----------------------------------------------------------------------------------------------------------------
-def coordinates(num_images):
+def coordinates(num_images, center):
+
+    spacing = num_images//8
+    R = 50
+    phi = np.linspace(0, 0.5 * np.pi, spacing)
+    X = center[0] + R * np.cos(phi)
+    Y = center[1] + R * np.sin(phi)
+    Z = center[2] 
+
+
 
     cords = []
     num_steps = []
@@ -130,7 +139,8 @@ CAM = CAMERA(client=client, IP='10.50.12.88')
 num_images = get_number_of_Images()
 
 # calculate arrays with roboter coordinates
-cords, motorStepps = coordinates(num_images)
+Objekt_cords = [0, 0, 0]
+cords, motorStepps = coordinates(num_images, Objekt_cords)
 
 
 I90_access = client.controller_getvariable(RC8, "I90", "")   # Object for variable access
