@@ -20,6 +20,7 @@ from datetime import datetime
 
 kit = MotorKit()    # MotorKit Object
 
+
 #----------------------------------------------------------------------------------------------------------------
 #   function for calculation of Roboter coordinates
 #   Inputs: number of Images: num_images
