@@ -2,6 +2,7 @@ import pybcapclient.bcapclient as bcapclient
 import cv2
 import numpy as np
 from datetime import datetime
+import time
 
 
 # set IP Address , Port number and Timeout of connected RC8
@@ -24,5 +25,9 @@ client = client
 
 for x in range(50):
     # OneShot
+    begin = time.now()
     client.controller_execute(camera_handler, 'OneShotFocus', '')
-    print("image: %s"% x)
+
+    duration = time.now() - begin
+    print("Time: %s"% duration)
+    
