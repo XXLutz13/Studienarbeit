@@ -36,10 +36,10 @@ def coordinates(num_images, center):
     Y = center[1] + R * np.sin(phi)
     Z = center[2] 
 
-
-
     cords = []
     num_steps = []
+    for x in range(spacing):
+        cords += [(X[x], Y[x], Z)] 
 
     return cords, num_steps
 

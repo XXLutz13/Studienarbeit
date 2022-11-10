@@ -10,24 +10,31 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 import numpy as np
 
+def get_number_of_Images():
+    num_images = int(input('Number of Images: ') or '100')
+    return num_images
 
-Object_cords = [1, 2, 3]
+num_images = get_number_of_Images()
+Object_cords = [10, 10, 0]
 R = 50
-phi = np.linspace(0, 0.5 * np.pi, 12)
+spacing = num_images//8
+
+phi = np.linspace(0, 0.5 * np.pi, spacing)
 X = Object_cords[0] + R * np.cos(phi)
-Y = Object_cords[1] + R * np.sin(phi)
-Z = Object_cords[2] 
+Y = []
+Z = Object_cords[2] + R * np.sin(phi)
 
 cords = []
-for x in phi:
-    cords[x] = [X[x], Y[x], Z] 
+for x in range(spacing):
+    Y += [Object_cords[1]]
+    cords += [(X[x], Y[x], Z[x])] 
 
-print(cords)
 
-fig = plt.figure()
+
+fig = plt.figure('Test')
 plt.axes(projection ='3d')
 plt.plot(X, Y, Z, marker='o', markersize=3, color="green")
 plt.grid()
 plt.axis('equal')
-plt.plot(1,2,3,  marker='o', markersize=3, color="red")
+plt.plot(Object_cords[0], Object_cords[1], Object_cords[2],  marker='o', markersize=3, color="red")
 plt.show()
