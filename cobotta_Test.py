@@ -67,21 +67,21 @@ new_coords = [0,0,0]
 m_bcapclient.variable_putvalue(P90_access, new_coords)    # write new coordinates
 
 
-# Get Camera Handler
-camera_handler = m_bcapclient.controller_connect('N10-W02', 'CaoProv.Canon.N10-W02', '', 'Conn=eth:10.50.12.88, Timeout=3000')
-print ('Camera handler is {}.'.format(camera_handler))
+# # Get Camera Handler
+# camera_handler = m_bcapclient.controller_connect('N10-W02', 'CaoProv.Canon.N10-W02', '', 'Conn=eth:10.50.12.88, Timeout=3000')
+# print ('Camera handler is {}.'.format(camera_handler))
 
-# OneShot
-image = m_bcapclient.controller_execute(camera_handler, 'OneShotFocus', '')
+# # OneShot
+# image = m_bcapclient.controller_execute(camera_handler, 'OneShotFocus', '')
 
-# Get Variable ID
-variable_handler = m_bcapclient.controller_getvariable(camera_handler, 'IMAGE')
-print('IMAGE handler is {}.'.format(variable_handler))
+# # Get Variable ID
+# variable_handler = m_bcapclient.controller_getvariable(camera_handler, 'IMAGE')
+# print('IMAGE handler is {}.'.format(variable_handler))
 
 
-image_buff = m_bcapclient.variable_getvalue(variable_handler)
+# image_buff = m_bcapclient.variable_getvalue(variable_handler)
 
-nparr = np.frombuffer(image_buff , dtype=np.uint8)
-cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+# nparr = np.frombuffer(image_buff , dtype=np.uint8)
+# cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-cv2.imwrite('Images/%s_bike-yellow.png'% datetime.now().strftime("%Y%m%d_%H:%M:%S"), cv_image)
+# cv2.imwrite('Images/%s_bike-yellow.png'% datetime.now().strftime("%Y%m%d_%H:%M:%S"), cv_image)

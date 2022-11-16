@@ -15,7 +15,7 @@ def get_number_of_Images():
     return num_images
 
 num_images = get_number_of_Images()
-Object_cords = [10, 10, 0]
+Object_cords = [-20, -100, 10]
 R = 50
 spacing = num_images//8
 
@@ -30,11 +30,16 @@ for x in range(spacing):
     cords += [(X[x], Y[x], Z[x])] 
 
 
+print(cords[0])
 
 fig = plt.figure('Test')
-plt.axes(projection ='3d')
+ax = plt.axes(projection ='3d')
 plt.plot(X, Y, Z, marker='o', markersize=3, color="green")
 plt.grid()
 plt.axis('equal')
 plt.plot(Object_cords[0], Object_cords[1], Object_cords[2],  marker='o', markersize=3, color="red")
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+
 plt.show()
