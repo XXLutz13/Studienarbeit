@@ -40,6 +40,7 @@ def coordinates(num_images, center):
     num_steps = []
     for x in range(spacing):
         cords += [(X[x], Y[x], Z)] 
+        num_steps += [50]
 
     return cords, num_steps
 
