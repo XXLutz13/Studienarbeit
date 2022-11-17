@@ -40,24 +40,30 @@ I91_access = client.controller_getvariable(hCtrl, "I91", "")   # Object for vari
 P90_access = client.controller_getvariable(hCtrl, "P90", "")   # Object to post new Coordinates
 
 
+try:
 
-new_coords = [150,280,200,-180,0,0]   # new coordinates for robot
-client.variable_putvalue(P90_access, new_coords)    # write new coordinates
+    new_coords = [150,280,200,-180,0,0]   # new coordinates for robot
+    client.variable_putvalue(P90_access, new_coords)    # write new coordinates
 
-# acctivate script on cobotta
-I90 = 1   # new value
-client.variable_putvalue(I90_access, I90) # write I90 value
-print('skript active')
+    # acctivate script on cobotta
+    I90 = 1   # new value
+    client.variable_putvalue(I90_access, I90) # write I90 value
+    print('skript active')
 
-# stepper_worker(kit.stepper1, motorStepps[x], stepper.FORWARD)   # move stepper motor 
+    # stepper_worker(kit.stepper1, motorStepps[x], stepper.FORWARD)   # move stepper motor 
 
-ready = 0
-# wait for robot to set I91
-while not ready:
-    ready = client.variable_getvalue(I91_access)  # read I91
-    print(ready)
-    time.sleep(0.1)
+    ready = 0
+    # wait for robot to set I91
+    while not ready:
+        ready = client.variable_getvalue(I91_access)  # read I91
+        print(ready)
+        time.sleep(0.1)
 
-I90 = 1   # new value
-client.variable_putvalue(I90_access, I90) # write I90 value
-print("finished")
+    I90 = 1   # new value
+    client.variable_putvalue(I90_access, I90) # write I90 value
+    print("finished")
+
+except KeyboardInterrupt:
+    # finish script on cobotta
+    I90 = 0   # new value
+    client.variable_putvalue(I90_access, I90) # write I90 value
