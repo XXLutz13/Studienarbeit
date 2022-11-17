@@ -140,7 +140,7 @@ CAM = CAMERA(client=client, IP='10.50.12.88')
 num_images = get_number_of_Images()
 
 # calculate arrays with roboter coordinates
-Objekt_cords = [0, 0, 0]
+Objekt_cords = [150, 280, 20]
 cords, motorStepps = coordinates(num_images, Objekt_cords)
 
 
@@ -149,7 +149,7 @@ I91_access = client.controller_getvariable(RC8, "I91", "")   # Object for variab
 P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post new Coordinates
 
 try:
-    for x in num_images:
+    for x in range(num_images):
 
         new_coords = cords[x]   # new coordinates for robot
         client.variable_putvalue(P90_access, new_coords)    # write new coordinates
