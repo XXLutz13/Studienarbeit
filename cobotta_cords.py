@@ -56,4 +56,6 @@ while not ready:
     ready = client.variable_getvalue(I91_access)  # read I91
     time.sleep(0.1)
 
+I90 = 1   # new value
+client.variable_putvalue(I90_access, I90) # write I90 value
 print("finished")
