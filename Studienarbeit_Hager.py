@@ -71,7 +71,7 @@ def connect_Cobotta(IP):
         # set Parameter
         Name = ""
         Provider = "CaoProv.DENSO.VRC"
-        Machine = IP
+        Machine = host
         Option = ""
 
         # Connect to RC8 (RC8(VRC)provider)
