@@ -42,7 +42,7 @@ P90_access = client.controller_getvariable(hCtrl, "P90", "")   # Object to post 
 
 try:
 
-    new_coords = [150,280,200,-180,0,0]   # new coordinates for robot
+    new_coords = [150.5,280,200,-180,0,0]   # new coordinates for robot
     client.variable_putvalue(P90_access, new_coords)    # write new coordinates
 
     # acctivate script on cobotta
@@ -59,7 +59,7 @@ try:
         print(ready)
         time.sleep(0.1)
 
-    I90 = 1   # new value
+    I90 = 0   # new value
     client.variable_putvalue(I90_access, I90) # write I90 value
     print("finished")
 
