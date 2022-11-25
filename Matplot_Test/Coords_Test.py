@@ -20,14 +20,21 @@ R = 50
 spacing = num_images//8
 
 phi = np.linspace(0, 0.5 * np.pi, spacing)
-X = Object_cords[0] + R * np.cos(phi)
-Y = []
-Z = Object_cords[2] + R * np.sin(phi)
+X = []
+Y = Object_cords[1] + R * np.sin(phi)
+Z = Object_cords[2] + R * np.cos(phi)
+dx = []
+dy = []
+dz = []
 
 cords = []
+angle_x_increment = 90/spacing
 for x in range(spacing):
-    Y += [Object_cords[1]]
-    cords += [(X[x], Y[x], Z[x])] 
+    X += [Object_cords[1]]
+    dx += [90 - x*angle_x_increment]
+    dy += [0]
+    dz += [90]
+    cords += [(X[x], Y[x], Z[x], dx[x], dy[x], dz[x])] 
 
 
 print(cords[0])

@@ -62,11 +62,9 @@ def connect_Cobotta(IP):
     try:
         # Connection processing of tcp communication
         client = bcapclient.BCAPClient(host, port, timeout)
-        logging.info('Open Connection')
 
         # start b_cap Service
         client.service_start("")
-        logging.info('started b_cap service')
 
         # set Parameter
         Name = ""
@@ -76,12 +74,11 @@ def connect_Cobotta(IP):
 
         # Connect to RC8 (RC8(VRC)provider)
         RC8 = client.controller_connect(Name, Provider, Machine, Option)
-        logging.info('established RC8 connection')
 
         return client, RC8
 
     except:
-        logging.error("can't connect to Cobotta")
+        raise RuntimeError("can't connect to Cobotta")
 
 #----------------------------------------------------------------------------------------------------------------
 #   cobotta camera class
@@ -95,7 +92,7 @@ class CAMERA:
             self.camera_handler = client.controller_connect('N10-W02', 'CaoProv.Canon.N10-W02', '', 'Conn=eth:'+ IP +', Timeout=3000')
             self.client = client
         except:
-            logging.error("can't connect camera")
+            raise RuntimeError("can't connect camera")
 
     def OneShot(self):
         try:
@@ -111,12 +108,12 @@ class CAMERA:
             # save image to file
             cv2.imwrite('Images/%s_bike-yellow.png'% datetime.now().strftime("%Y%m%d_%H:%M:%S"), cv_image)
         except:
-            logging.error("faild to capture image")
+            raise RuntimeError("faild to capture image")
 
 
 def get_number_of_Images():
     num_images = int(input('Number of Images: ') or '100')
-    logging.info('User Input num_images: %s', num_images)
+    print('User Input num_images: %s', num_images)
     return num_images
 
 
@@ -177,7 +174,7 @@ try:
         client.variable_putvalue(I90_access, I90) # write I90 value
 
 
-except KeyboardInterrupt:
+except:
     # finish script on cobotta
     I90 = 0   # new value
     client.variable_putvalue(I90_access, I90) # write I90 value
@@ -189,7 +186,12 @@ except KeyboardInterrupt:
 
     kit.stepper1.release()
 
-    logging.error("service stoped!")
+    raise Exception("service stoped!")
+
+except Keyboardinterrupt:
+    I90 = 0   # new value
+    client.variable_putvalue(I90_access, I90) # write I90 value
+    raise Exception("Keyboardinterrupt!")
 
 
 
