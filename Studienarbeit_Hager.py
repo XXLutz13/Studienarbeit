@@ -179,10 +179,10 @@ except:
     I90 = 0   # new value
     client.variable_putvalue(I90_access, I90) # write I90 value
 
-    client.variable_release(I90_access)
-    client.variable_release(I91_access)
-    client.variable_release(P90_access)
-    client.service_stop()
+    client.variable_release(I90_access) # close connection
+    client.variable_release(I91_access) # close connection
+    client.variable_release(P90_access) # close connection
+    client.service_stop() # stop bcapclient
 
     kit.stepper1.release()
 
