@@ -97,6 +97,8 @@ def getCoords():
         dy += [0]
         dz += [90]
         cords += [(X[x], Y[x], Z[x], dx[x], dy[x], dz[x])] 
+    
+    return cords
 
 
 # establish Cobotta connection
@@ -110,7 +112,7 @@ P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post ne
 
 cords = getCoords()
 
-for i in range(8):
+for x in range(8):
     new_coords = cords[x]   # new coordinates for robot
     print(new_coords)
     client.variable_putvalue(P90_access, new_coords)    # write new coordinates
