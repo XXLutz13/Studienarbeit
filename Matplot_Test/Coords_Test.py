@@ -14,40 +14,52 @@ def get_number_of_Images():
     num_images = int(input('Number of Images: ') or '100')
     return num_images
 
+def getCoords(num_images, center):
+    Object_cords = [190, 0, 80]
+    R = 80
+    spacing = num_images//8
+
+    # phi = np.linspace(0, 0.5 * np.pi, spacing)
+    phi = np.linspace(0.5*np.pi, np.pi, spacing)
+    X = []
+    Y = Object_cords[1] + R * np.cos(phi)
+    Z = Object_cords[2] + R * np.sin(phi)
+    rx = []
+    ry = []
+    rz = []
+
+    cords = []
+    angle_x_increment = 90/(spacing-1)
+    for i in range(spacing):
+        X += [Object_cords[0]]
+        rx += [90 + i*angle_x_increment]
+        ry += [0]
+        rz += [0]
+        cords += [(X[i], Y[i], Z[i], rx[i], ry[i], rz[i])] 
+
+    num_steps = []
+    for x in range(8):
+        num_steps += [50]
+    
+    return cords, num_steps
+
+
 num_images = get_number_of_Images()
-Object_cords = [50, 20, 10]
-R = 50
-spacing = num_images//8
-
-# phi = np.linspace(0, 0.5 * np.pi, spacing)
-phi = np.linspace(0.5*np.pi, np.pi, spacing)
-X = []
-Y = Object_cords[1] + R * np.cos(phi)
-Z = Object_cords[2] + R * np.sin(phi)
-dx = []
-dy = []
-dz = []
-
-cords = []
-angle_x_increment = 90/spacing
-for x in range(spacing):
-    X += [Object_cords[0]]
-    dx += [90 - x*angle_x_increment]
-    dy += [0]
-    dz += [90]
-    cords += [(X[x], Y[x], Z[x], dx[x], dy[x], dz[x])] 
-
+# calculate arrays with roboter coordinates
+Objekt_cords = [190, 0, 80]
+cords, motorStepps = getCoords(num_images, Objekt_cords)
 
 print(cords[0])
+print(cords[11])
 
-fig = plt.figure('Test')
-ax = plt.axes(projection ='3d')
-plt.plot(X, Y, Z, marker='o', markersize=3, color="green")
-plt.grid()
-plt.axis('equal')
-plt.plot(Object_cords[0], Object_cords[1], Object_cords[2],  marker='o', markersize=3, color="red")
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-ax.set_zlabel('Z')
+# fig = plt.figure('Test')
+# ax = plt.axes(projection ='3d')
+# plt.plot(X, Y, Z, marker='o', markersize=3, color="green")
+# plt.grid()
+# plt.axis('equal')
+# plt.plot(Object_cords[0], Object_cords[1], Object_cords[2],  marker='o', markersize=3, color="red")
+# ax.set_xlabel('X')
+# ax.set_ylabel('Y')
+# ax.set_zlabel('Z')
 
-plt.show()
+# plt.show()

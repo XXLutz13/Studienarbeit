@@ -29,7 +29,7 @@ kit = MotorKit()    # MotorKit Object
 #----------------------------------------------------------------------------------------------------------------
 def coordinates(num_images, center):
 
-    Object_cords = [50, 20, 10]
+    Object_cords = [190, 0, 80]
     R = 50
     spacing = num_images//8
 
@@ -200,11 +200,6 @@ except:
     kit.stepper1.release()
 
     raise Exception("service stoped!")
-
-# except Keyboardinterrupt:
-#     I90 = 0   # new value
-#     client.variable_putvalue(I90_access, I90) # write I90 value
-#     raise Exception("Keyboardinterrupt!")
 
 
 
