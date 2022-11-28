@@ -52,7 +52,7 @@ def coordinates(num_images, center):
         cords += [(X[x], Y[x], Z[x], dx[x], dy[x], dz[x])] 
 
     num_steps = []
-    for x in range(8)
+    for x in range(8):
         num_steps += [50]
     
     return cords, num_steps
