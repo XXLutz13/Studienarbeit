@@ -29,19 +29,32 @@ kit = MotorKit()    # MotorKit Object
 #----------------------------------------------------------------------------------------------------------------
 def coordinates(num_images, center):
 
-    spacing = num_images//8
+    Object_cords = [50, 20, 10]
     R = 50
-    phi = np.linspace(0, 0.5 * np.pi, spacing)
-    X = center[0] + R * np.cos(phi)
-    Y = center[1] + R * np.sin(phi)
-    Z = center[2] 
+    spacing = num_images//8
+
+    # phi = np.linspace(0, 0.5 * np.pi, spacing)
+    phi = np.linspace(0.5*np.pi, np.pi, spacing)
+    X = []
+    Y = Object_cords[1] + R * np.cos(phi)
+    Z = Object_cords[2] + R * np.sin(phi)
+    dx = []
+    dy = []
+    dz = []
 
     cords = []
-    num_steps = []
+    angle_x_increment = 90/spacing
     for x in range(spacing):
-        cords += [(X[x], Y[x], Z)] 
-        num_steps += [50]
+        X += [Object_cords[0]]
+        dx += [90 - x*angle_x_increment]
+        dy += [0]
+        dz += [90]
+        cords += [(X[x], Y[x], Z[x], dx[x], dy[x], dz[x])] 
 
+    num_steps = []
+    for x in range(8)
+        num_steps += [50]
+    
     return cords, num_steps
 
 
@@ -188,10 +201,10 @@ except:
 
     raise Exception("service stoped!")
 
-except Keyboardinterrupt:
-    I90 = 0   # new value
-    client.variable_putvalue(I90_access, I90) # write I90 value
-    raise Exception("Keyboardinterrupt!")
+# except Keyboardinterrupt:
+#     I90 = 0   # new value
+#     client.variable_putvalue(I90_access, I90) # write I90 value
+#     raise Exception("Keyboardinterrupt!")
 
 
 
