@@ -63,8 +63,6 @@ class CAMERA:
             
             image_buff = self.client.variable_getvalue(self.variable_handler)
 
-            Image.open(image_buff).save('TestTest.png')
-
             # converts Cobotta image to usable numpy formate 
             nparr = np.frombuffer(image_buff , dtype=np.uint8)
             cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
