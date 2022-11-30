@@ -168,7 +168,8 @@ try:
     for rotation in range(8):
         for point in cords:
             
-            new_coords = [190, 39.99999999999999, 200.0, 180.0, 0, 0] # -> Problem mit dem Datenformat
+            new_coords = tuple(point)
+            print(point)
             client.variable_putvalue(P90_access, new_coords)    # write new coordinates
 
             # acctivate script on cobotta
