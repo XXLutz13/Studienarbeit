@@ -179,6 +179,7 @@ try:
             CAM.OneShot('_Test_')
 
             # evtl delay?
+            time.sleep(2)
 
             # finish script on cobotta
             I90 = 0   # new value
