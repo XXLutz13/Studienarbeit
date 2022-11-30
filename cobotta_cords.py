@@ -76,6 +76,7 @@ try:
 
     new_coords = cords[1]   # new coordinates for robot
     print(new_coords)
+    print(type(new_coords))
     client.variable_putvalue(P90_access, new_coords)    # write new coordinates
 
     # acctivate script on cobotta

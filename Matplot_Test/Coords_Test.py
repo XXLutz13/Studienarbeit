@@ -52,6 +52,9 @@ cords, motorStepps = getCoords(num_images, Objekt_cords)
 print(cords[0])
 print(cords[11])
 print(motorStepps[2])
+test = [160,80,80.333330134,180,0,0]
+print(type(cords[0]))
+print(type(test))
 
 
 
