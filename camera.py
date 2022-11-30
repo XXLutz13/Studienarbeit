@@ -50,7 +50,7 @@ class CAMERA:
             # Get Camera Handler
             self.camera_handler = client.controller_connect('N10-W02', 'CaoProv.Canon.N10-W02', '', 'Conn=eth:'+ IP +', Timeout=3000')
             self.client = client
-            # Get Variable ID
+            # Get Camera Variable ID  
             self.variable_handler = self.client.controller_getvariable(self.camera_handler, 'IMAGE')
         except:
             raise RuntimeError("can't connect camera")
@@ -62,9 +62,7 @@ class CAMERA:
             
             image_buff = self.client.variable_getvalue(self.variable_handler)
 
-            # converts Cobotta image to usable numpy formate 
-            nparr = np.frombuffer(image_buff , dtype=np.uint8)
-            cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+            cv_image = convert_image(image_buff)
             print("cv_image")
             # save image to file
             image_name = 'Images/{}{}.png'
@@ -77,7 +75,15 @@ class CAMERA:
 def convert_image(img):
     nparry = np.frombuffer(img , dtype=np.uint8)
     cv_image = cv2.imdecode(nparry, cv2.IMREAD_COLOR)
-    return cv_image
+
+    scale_percent = 40 # percent of original size
+    width = int(cv_image.shape[1] * scale_percent / 100)
+    height = int(cv_image.shape[0] * scale_percent / 100)
+    dim = (width, height)
+    # resize image
+    resized = cv2.resize(cv_image, dim, interpolation = cv2.INTER_AREA)
+
+    return resized
 
 # establish Cobotta connection
 client, RC8 = connect_Cobotta('10.50.12.87')
