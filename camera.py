@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 from datetime import datetime
 import time
+from PIL import Image
 
 #----------------------------------------------------------------------------------------------------------------
 #   establish connection to Cobotta
@@ -62,8 +63,7 @@ class CAMERA:
             
             image_buff = self.client.variable_getvalue(self.variable_handler)
 
-            f = open("test_bild.txt", "w")
-            f.write(str(image_buff))
+            Image.open(image_buff).save('TestTest.png')
 
             # converts Cobotta image to usable numpy formate 
             nparr = np.frombuffer(image_buff , dtype=np.uint8)
