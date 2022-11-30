@@ -59,7 +59,7 @@ class CAMERA:
 
             # Get Variable ID
             variable_handler = self.client.controller_getvariable(self.camera_handler, 'IMAGE')
-
+            print("got Image")
             image_buff = self.client.variable_getvalue(variable_handler)
             # converts Cobotta image to usable numpy formate 
             nparr = np.frombuffer(image_buff , dtype=np.uint8)
