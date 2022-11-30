@@ -160,7 +160,7 @@ P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post ne
 try:
     for rotation in range(8):
         for x in cords:
-
+            print(x)
             new_coords = cords[x]   # new coordinates for robot
             print(new_coords)
             client.variable_putvalue(P90_access, new_coords)    # write new coordinates

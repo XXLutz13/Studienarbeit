@@ -58,7 +58,7 @@ print("Connect RC8")
 
 # example of how the robot access will be handled later
 I90_access = m_bcapclient.controller_getvariable(hCtrl, "I90", "")   # Object for variable access
-CobottaAccess = 1   # new value
+CobottaAccess = 0   # new value
 m_bcapclient.variable_putvalue(I90_access, CobottaAccess)
 
 
