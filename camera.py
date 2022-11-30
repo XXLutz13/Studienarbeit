@@ -3,7 +3,6 @@ import cv2
 import numpy as np
 from datetime import datetime
 import time
-from PIL import Image
 
 #----------------------------------------------------------------------------------------------------------------
 #   establish connection to Cobotta
