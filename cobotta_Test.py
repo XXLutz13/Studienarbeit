@@ -63,7 +63,7 @@ m_bcapclient.variable_putvalue(I90_access, CobottaAccess)
 
 
 P90_access = m_bcapclient.controller_getvariable(hCtrl, "P90", "")   # Object to post new Coordinates
-new_coords = [0,0,0] 
+new_coords = [190, 39.99999999999999, 200.0, 180.0, 0, 0]
 m_bcapclient.variable_putvalue(P90_access, new_coords)    # write new coordinates
 
 
