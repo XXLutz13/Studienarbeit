@@ -61,6 +61,7 @@ class CAMERA:
             print("image service")
             
             image_buff = self.client.variable_getvalue(self.variable_handler)
+            print(image_buff)
             # converts Cobotta image to usable numpy formate 
             nparr = np.frombuffer(image_buff , dtype=np.uint8)
             cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
@@ -68,6 +69,7 @@ class CAMERA:
             # save image to file
             image_name = 'Images/{}{}.png'
             cv2.imwrite(image_name.format(datetime.now().strftime("%Y%m%d_%H:%M:%S"), name), cv_image)
+
         except:
             raise RuntimeError("faild to capture image")
 
@@ -82,7 +84,7 @@ client, RC8 = connect_Cobotta('10.50.12.87')
 # open camera connection
 CAM = CAMERA(client=client, IP='10.50.12.88')
 
-for x in range(20):
+for x in range(2):
     CAM.OneShot('_Test_')
     time.sleep(1)
 

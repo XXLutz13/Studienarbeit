@@ -103,17 +103,17 @@ class CAMERA:
             # Get Camera Handler
             self.camera_handler = client.controller_connect('N10-W02', 'CaoProv.Canon.N10-W02', '', 'Conn=eth:'+ IP +', Timeout=3000')
             self.client = client
+            # Get Variable ID
+            self.variable_handler = self.client.controller_getvariable(self.camera_handler, 'IMAGE')
         except:
             raise RuntimeError("can't connect camera")
 
     def OneShot(self, name):
         try:
-            image = self.client.controller_execute(self.camera_handler, 'OneShotFocus', '')
+            # take and export image from Canon camera 
+            self.client.controller_execute(self.camera_handler, 'OneShotFocus', '')
+            image_buff = self.client.variable_getvalue(self.variable_handler)
 
-            # Get Variable ID
-            variable_handler = self.client.controller_getvariable(self.camera_handler, 'IMAGE')
-
-            image_buff = self.client.variable_getvalue(variable_handler)
             # converts Cobotta image to usable numpy formate 
             nparr = np.frombuffer(image_buff , dtype=np.uint8)
             cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
