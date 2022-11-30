@@ -154,8 +154,8 @@ Objekt_cords = [190, -40, 120]
 cords, motorStepps = coordinates(num_images, Objekt_cords)
 
 
-# I90_access = client.controller_getvariable(RC8, "I90", "")   # Object for variable access
-# I91_access = client.controller_getvariable(RC8, "I91", "")   # Object for variable access
+I90_access = client.controller_getvariable(RC8, "I90", "")   # Object for variable access
+I91_access = client.controller_getvariable(RC8, "I91", "")   # Object for variable access
 # P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post new Coordinates
 
 try:
