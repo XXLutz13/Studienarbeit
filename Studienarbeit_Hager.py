@@ -114,9 +114,7 @@ class CAMERA:
             self.client.controller_execute(self.camera_handler, 'OneShotFocus', '')
             image_buff = self.client.variable_getvalue(self.variable_handler)
 
-            # converts Cobotta image to usable numpy formate 
-            nparr = np.frombuffer(image_buff , dtype=np.uint8)
-            cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+            cv_image = convert_image(image_buff)
             # save image to file
             image_name = 'Images/{}{}.png'
             cv2.imwrite(image_name.format(datetime.now().strftime("%Y%m%d_%H:%M:%S"), name), cv_image)
@@ -134,7 +132,15 @@ def get_number_of_Images():
 def convert_image(img):
     nparry = np.frombuffer(img , dtype=np.uint8)
     cv_image = cv2.imdecode(nparry, cv2.IMREAD_COLOR)
-    return cv_image
+
+    scale_percent = 40 # percent of original size
+    width = int(cv_image.shape[1] * scale_percent / 100)
+    height = int(cv_image.shape[0] * scale_percent / 100)
+    dim = (width, height)
+    # resize image
+    resized = cv2.resize(cv_image, dim, interpolation = cv2.INTER_AREA)
+
+    return resized
 
 # moves stepper motor
 def stepper_worker(stepper, numsteps, direction):
