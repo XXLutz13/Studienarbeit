@@ -48,7 +48,7 @@ def coordinates(num_images, center):
         rx += [180 - i*angle_x_increment]
         ry += [0]
         rz += [0]
-        cords += [(X[i], Y[i], Z[i], rx[i], ry[i], rz[i])] 
+        cords += [(X[i], -Y[i], Z[i], rx[i], ry[i], rz[i])] 
 
     num_steps = []
     for x in range(8):
@@ -149,7 +149,7 @@ CAM = CAMERA(client=client, IP='10.50.12.88')
 num_images = get_number_of_Images()
 
 # calculate arrays with roboter coordinates
-Objekt_cords = [190, 0, 80]
+Objekt_cords = [190, -40, 120]
 cords, motorStepps = coordinates(num_images, Objekt_cords)
 
 
@@ -158,33 +158,34 @@ I91_access = client.controller_getvariable(RC8, "I91", "")   # Object for variab
 P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post new Coordinates
 
 try:
-    for x in cords:
+    for rotation in range(8):
+        for x in cords:
 
-        new_coords = cords[x]   # new coordinates for robot
-        print(new_coords)
-        client.variable_putvalue(P90_access, new_coords)    # write new coordinates
+            new_coords = cords[x]   # new coordinates for robot
+            print(new_coords)
+            client.variable_putvalue(P90_access, new_coords)    # write new coordinates
 
-        # acctivate script on cobotta
-        I90 = 1   # new value
-        client.variable_putvalue(I90_access, I90) # write I90 value
+            # acctivate script on cobotta
+            I90 = 1   # new value
+            client.variable_putvalue(I90_access, I90) # write I90 value
 
-        stepper_worker(kit.stepper1, motorStepps[x], stepper.FORWARD)   # move stepper motor 
+            ready = 0
+            # wait for robot to set I91
+            while not ready:
+                ready = client.variable_getvalue(I91_access)  # read I91
+                time.sleep(0.1)
 
-        ready = 0
-        # wait for robot to set I91
-        while not ready:
-            ready = client.variable_getvalue(I91_access)  # read I91
-            time.sleep(0.1)
+            # capturing image
+            CAM.OneShot()
 
-        # capturing image
-        CAM.OneShot()
+            # evtl delay?
 
-        # evtl delay?
+            # finish script on cobotta
+            I90 = 0   # new value
+            client.variable_putvalue(I90_access, I90) # write I90 value
 
-        # finish script on cobotta
-        I90 = 0   # new value
-        client.variable_putvalue(I90_access, I90) # write I90 value
-
+    stepper_worker(kit.stepper1, motorStepps[rotation], stepper.FORWARD)   # move stepper motor 
+    cords.reverse()
 
 except:
     # finish script on cobotta
