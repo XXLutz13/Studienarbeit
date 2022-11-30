@@ -61,7 +61,10 @@ class CAMERA:
             print("image service")
             
             image_buff = self.client.variable_getvalue(self.variable_handler)
-            print(image_buff)
+
+            f = open("test_bild.txt", "w")
+            f.write(image_buff)
+
             # converts Cobotta image to usable numpy formate 
             nparr = np.frombuffer(image_buff , dtype=np.uint8)
             cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
@@ -84,7 +87,7 @@ client, RC8 = connect_Cobotta('10.50.12.87')
 # open camera connection
 CAM = CAMERA(client=client, IP='10.50.12.88')
 
-for x in range(2):
+for x in range(1):
     CAM.OneShot('_Test_')
     time.sleep(1)
 
