@@ -56,7 +56,7 @@ class CAMERA:
     def OneShot(self, name):
         try:
             image = self.client.controller_execute(self.camera_handler, 'OneShotFocus', '')
-
+            print("image service")
             # Get Variable ID
             variable_handler = self.client.controller_getvariable(self.camera_handler, 'IMAGE')
             print("got Image")
@@ -64,6 +64,7 @@ class CAMERA:
             # converts Cobotta image to usable numpy formate 
             nparr = np.frombuffer(image_buff , dtype=np.uint8)
             cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+            print("cv_image")
             # save image to file
             image_name = 'Images/{}{}.png'
             cv2.imwrite(image_name.format(datetime.now().strftime("%Y%m%d_%H:%M:%S"), name), cv_image)
@@ -84,4 +85,4 @@ CAM = CAMERA(client=client, IP='10.50.12.88')
 for x in range(20):
     CAM.OneShot('_Test_')
     time.sleep(1)
-    print(x)
+
