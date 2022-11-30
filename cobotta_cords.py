@@ -73,30 +73,31 @@ cords, motorStepps = getCoords(100, Objekt_cords)
 
 
 try:
+    for x in cords:
+        # new_coords = [190,40.000034,200,179.232887232,0,0]   # new coordinates for robot
+        new_coords = x
 
-    # new_coords = cords[1]   # new coordinates for robot
-    new_coords = tuple(cords[1]) 
-    print(new_coords)
-    print(type(new_coords))
-    client.variable_putvalue(P90_access, new_coords)    # write new coordinates
+        print(new_coords)
+        print(type(new_coords))
+        client.variable_putvalue(P90_access, new_coords)   # write new coordinates
 
-    # acctivate script on cobotta
-    I90 = 1   # new value
-    client.variable_putvalue(I90_access, I90) # write I90 value
-    print('skript active')
+        # acctivate script on cobotta
+        I90 = 1   # new value
+        client.variable_putvalue(I90_access, I90) # write I90 value
+        print('skript active')
 
-    # stepper_worker(kit.stepper1, motorStepps[x], stepper.FORWARD)   # move stepper motor 
+        # stepper_worker(kit.stepper1, motorStepps[x], stepper.FORWARD)   # move stepper motor 
 
-    ready = 0
-    # wait for robot to set I91
-    while not ready:
-        ready = client.variable_getvalue(I91_access)  # read I91
-        print(ready)
-        time.sleep(0.1)
+        ready = 0
+        # wait for robot to set I91
+        while not ready:
+            ready = client.variable_getvalue(I91_access)  # read I91
+            print(ready)
+            time.sleep(0.1)
 
-    I90 = 0   # new value
-    client.variable_putvalue(I90_access, I90) # write I90 value
-    print("finished")
+        I90 = 0   # new value
+        client.variable_putvalue(I90_access, I90) # write I90 value
+        print("finished")
 
 except KeyboardInterrupt:
     # finish script on cobotta
