@@ -105,7 +105,7 @@ class CAMERA:
         except:
             raise RuntimeError("can't connect camera")
 
-    def OneShot(self):
+    def OneShot(self, name):
         try:
             image = self.client.controller_execute(self.camera_handler, 'OneShotFocus', '')
 
@@ -117,7 +117,8 @@ class CAMERA:
             nparr = np.frombuffer(image_buff , dtype=np.uint8)
             cv_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
             # save image to file
-            cv2.imwrite('Images/%s_bike-yellow.png'% datetime.now().strftime("%Y%m%d_%H:%M:%S"), cv_image)
+            image_name = 'Images/{}{}.png'
+            cv2.imwrite(image_name.format(datetime.now().strftime("%Y%m%d_%H:%M:%S"), name), cv_image)
         except:
             raise RuntimeError("faild to capture image")
 
@@ -157,7 +158,7 @@ I91_access = client.controller_getvariable(RC8, "I91", "")   # Object for variab
 P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post new Coordinates
 
 try:
-    for x in range(num_images):
+    for x in cords:
 
         new_coords = cords[x]   # new coordinates for robot
         print(new_coords)
