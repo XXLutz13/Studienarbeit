@@ -156,14 +156,13 @@ cords, motorStepps = coordinates(num_images, Objekt_cords)
 
 I90_access = client.controller_getvariable(RC8, "I90", "")   # Object for variable access
 I91_access = client.controller_getvariable(RC8, "I91", "")   # Object for variable access
-# P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post new Coordinates
+P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post new Coordinates
 
 try:
     for rotation in range(8):
         for point in cords:
             
-            new_coords = point
-            P90_access = client.controller_getvariable(RC8, "P90", "") 
+            new_coords = [190, 39.99999999999999, 200.0, 180.0, 0, 0]
             client.variable_putvalue(P90_access, new_coords)    # write new coordinates
 
             # acctivate script on cobotta
