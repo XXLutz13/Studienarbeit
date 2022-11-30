@@ -39,10 +39,42 @@ I90_access = client.controller_getvariable(hCtrl, "I90", "")   # Object for vari
 I91_access = client.controller_getvariable(hCtrl, "I91", "")   # Object for variable access
 P90_access = client.controller_getvariable(hCtrl, "P90", "")   # Object to post new Coordinates
 
+def getCoords(num_images, center):
+    Object_cords = [190, -40, 120]
+    R = 80
+    spacing = num_images//8
+
+    # phi = np.linspace(0, 0.5 * np.pi, spacing)
+    phi = np.linspace(0.5*np.pi, np.pi, spacing)
+    X = []
+    Y = Object_cords[1] + R * np.cos(phi)
+    Z = Object_cords[2] + R * np.sin(phi)
+    rx = []
+    ry = []
+    rz = []
+
+    cords = []
+    angle_x_increment = 90/(spacing-1)
+    for i in range(spacing):
+        X += [Object_cords[0]]
+        rx += [180 - i*angle_x_increment]
+        ry += [0]
+        rz += [0]
+        cords += [[X[i], -Y[i], Z[i], rx[i], ry[i], rz[i]]] 
+
+    num_steps = []
+    for x in range(8):
+        num_steps += [50]
+    
+    return cords, num_steps
+
+Objekt_cords = [190, -40, 120]
+cords, motorStepps = getCoords(100, Objekt_cords)
+
 
 try:
 
-    new_coords = [150.5,280,200,-180,0,0]   # new coordinates for robot
+    new_coords = cords[1]   # new coordinates for robot
     client.variable_putvalue(P90_access, new_coords)    # write new coordinates
 
     # acctivate script on cobotta

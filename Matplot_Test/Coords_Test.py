@@ -53,8 +53,7 @@ print(cords[0])
 print(cords[11])
 print(motorStepps[2])
 
-for x in cords:
-    print(x)
+
 
 # fig = plt.figure('Test')
 # ax = plt.axes(projection ='3d')

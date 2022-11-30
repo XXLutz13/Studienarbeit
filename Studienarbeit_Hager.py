@@ -181,8 +181,8 @@ try:
                 ready = client.variable_getvalue(I91_access)  # read I91
                 time.sleep(0.1)
 
-            # # capturing image
-            # CAM.OneShot('_Test_')
+            # capturing image
+            CAM.OneShot('_Test_')
 
             # # evtl delay?
             # time.sleep(2)
