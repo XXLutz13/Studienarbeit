@@ -75,7 +75,7 @@ cords, motorStepps = getCoords(100, Objekt_cords)
 try:
 
     # new_coords = cords[1]   # new coordinates for robot
-    new_coords = [190, 51.3851870618628, 199.18571535047462, 171.8181818181818, 0, 0]   
+    new_coords = str([190, 51.3851870618628, 199.18571535047462, 171.8181818181818, 0, 0])   
     print(new_coords)
     print(type(new_coords))
     client.variable_putvalue(P90_access, new_coords)    # write new coordinates
