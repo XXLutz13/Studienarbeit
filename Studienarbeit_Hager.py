@@ -29,34 +29,32 @@ kit = MotorKit()    # MotorKit Object
 #----------------------------------------------------------------------------------------------------------------
 def coordinates(num_images, center):
 
-    Object_cords = [190, 0, 80]
-    R = 50
+    R = 80
     spacing = num_images//8
 
     # phi = np.linspace(0, 0.5 * np.pi, spacing)
     phi = np.linspace(0.5*np.pi, np.pi, spacing)
     X = []
-    Y = Object_cords[1] + R * np.cos(phi)
-    Z = Object_cords[2] + R * np.sin(phi)
-    dx = []
-    dy = []
-    dz = []
+    Y = center[1] + R * np.cos(phi)
+    Z = center[2] + R * np.sin(phi)
+    rx = []
+    ry = []
+    rz = []
 
     cords = []
-    angle_x_increment = 90/spacing
-    for x in range(spacing):
-        X += [Object_cords[0]]
-        dx += [90 - x*angle_x_increment]
-        dy += [0]
-        dz += [90]
-        cords += [(X[x], Y[x], Z[x], dx[x], dy[x], dz[x])] 
+    angle_x_increment = 90/(spacing-1)
+    for i in range(spacing):
+        X += [center[0]]
+        rx += [180 - i*angle_x_increment]
+        ry += [0]
+        rz += [0]
+        cords += [(X[i], Y[i], Z[i], rx[i], ry[i], rz[i])] 
 
     num_steps = []
     for x in range(8):
         num_steps += [50]
     
     return cords, num_steps
-
 
 
 #----------------------------------------------------------------------------------------------------------------
@@ -150,7 +148,7 @@ CAM = CAMERA(client=client, IP='10.50.12.88')
 num_images = get_number_of_Images()
 
 # calculate arrays with roboter coordinates
-Objekt_cords = [150, 280, 20]
+Objekt_cords = [190, 0, 80]
 cords, motorStepps = coordinates(num_images, Objekt_cords)
 
 
