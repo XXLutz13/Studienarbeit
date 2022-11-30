@@ -48,7 +48,7 @@ def coordinates(num_images, center):
         rx += [180 - i*angle_x_increment]
         ry += [0]
         rz += [0]
-        cords += [(X[i], -Y[i], Z[i], rx[i], ry[i], rz[i])] 
+        cords += [[X[i], -Y[i], Z[i], rx[i], ry[i], rz[i]]] 
 
     num_steps = []
     for x in range(8):
