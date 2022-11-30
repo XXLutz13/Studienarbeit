@@ -86,6 +86,7 @@ def connect_Cobotta(IP):
         # Connect to RC8 (RC8(VRC)provider)
         RC8 = client.controller_connect(Name, Provider, Machine, Option)
 
+        print("Cobotta connected")
         return client, RC8
 
     except:
@@ -160,7 +161,7 @@ P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post ne
 try:
     for rotation in range(8):
         for point in cords:
-            
+
             client.variable_putvalue(P90_access, point)    # write new coordinates
 
             # acctivate script on cobotta
