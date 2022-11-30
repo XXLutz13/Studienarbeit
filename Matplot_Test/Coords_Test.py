@@ -35,7 +35,7 @@ def getCoords(num_images, center):
         rx += [180 - i*angle_x_increment]
         ry += [0]
         rz += [0]
-        cords += [(X[i], -Y[i], Z[i], rx[i], ry[i], rz[i])] 
+        cords += [[X[i], -Y[i], Z[i], rx[i], ry[i], rz[i]]] 
 
     num_steps = []
     for x in range(8):
@@ -52,6 +52,9 @@ cords, motorStepps = getCoords(num_images, Objekt_cords)
 print(cords[0])
 print(cords[11])
 print(motorStepps[2])
+
+for x in cords:
+    print(x)
 
 # fig = plt.figure('Test')
 # ax = plt.axes(projection ='3d')

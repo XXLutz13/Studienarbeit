@@ -159,11 +159,9 @@ P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post ne
 
 try:
     for rotation in range(8):
-        for x in cords:
-            # new_coords = cords[x]   # new coordinates for robot
-            # print(new_coords)
-            print(x)
-            client.variable_putvalue(P90_access, x)    # write new coordinates
+        for point in cords:
+            
+            client.variable_putvalue(P90_access, point)    # write new coordinates
 
             # acctivate script on cobotta
             I90 = 1   # new value
