@@ -162,7 +162,7 @@ try:
     for rotation in range(8):
         for point in cords:
             
-            new_coords = [190, 39.99999999999999, 200.0, 180.0, 0, 0]
+            new_coords = [190, 39.99999999999999, 200.0, 180.0, 0, 0] # -> Problem mit dem Datenformat
             client.variable_putvalue(P90_access, new_coords)    # write new coordinates
 
             # acctivate script on cobotta
@@ -176,7 +176,7 @@ try:
                 time.sleep(0.1)
 
             # capturing image
-            CAM.OneShot()
+            CAM.OneShot('_Test_')
 
             # evtl delay?
 
