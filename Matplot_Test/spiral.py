@@ -6,25 +6,40 @@
 #
 #----------------------------------------------------------------------------------------------------------------
 
-from cmath import cos, pi, sin
-
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 import numpy as np
 
+def get_number_of_Images():
+    num_images = int(input('Number of Images: ') or '100')
+    return num_images
 
-r = 1
-c = 1.5
-number_of_ponits = 10
-µ = np.linspace(0, 1, num=number_of_ponits)
-x = y = z = np.zeros_like(µ)
+num_images = get_number_of_Images()
+Object_cords = [-20, -100, 10]
+R = 50
+spacing = num_images//8
 
-# for i in range(number_of_ponits):
-#     x[i] = np.real(r*cos(µ[i])*cos(c*µ[i]))
-#     y[i] = np.real(r*sin(µ[i])*sin(c*µ[i]))
-#     z[i] = np.real(r*cos(µ[i]))
+phi = np.linspace(0, 0.5 * np.pi, spacing)
+X = Object_cords[0] + R * np.cos(phi)
+Y = []
+Z = Object_cords[2] + R * np.sin(phi)
 
-fig = plt.figure()
-ax = plt.axes(projection='3d')
-ax.plot3D(x,y,z)
+cords = []
+for x in range(spacing):
+    Y += [Object_cords[1]]
+    cords += [(X[x], Y[x], Z[x])] 
+
+
+print(cords[0])
+
+fig = plt.figure('Test')
+ax = plt.axes(projection ='3d')
+plt.plot(X, Y, Z, marker='o', markersize=3, color="green")
+plt.grid()
+plt.axis('equal')
+plt.plot(Object_cords[0], Object_cords[1], Object_cords[2],  marker='o', markersize=3, color="red")
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+
 plt.show()
