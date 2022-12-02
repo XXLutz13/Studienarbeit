@@ -192,9 +192,9 @@ try:
             I90 = 0   # new value
             client.variable_putvalue(I90_access, I90) # write I90 value
 
-    stepper_worker(kit.stepper1, motorStepps[rotation], stepper.FORWARD)   # move stepper motor 
-    print("Moving Motor")
-    cords.reverse()
+        stepper_worker(kit.stepper1, motorStepps[rotation], stepper.FORWARD)   # move stepper motor 
+        print("Moving Motor")
+        cords.reverse()
 
 except:
     # finish script on cobotta
