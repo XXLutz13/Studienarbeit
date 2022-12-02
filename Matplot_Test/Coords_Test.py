@@ -31,11 +31,11 @@ def getCoords(num_images, center):
     cords = []
     angle_x_increment = 90/(spacing-1)
     for i in range(spacing):
-        X += [Object_cords[0]]
-        rx += [180 - i*angle_x_increment]
-        ry += [0]
-        rz += [0]
-        cords += [[X[i], -Y[i], Z[i], rx[i], ry[i], rz[i]]] 
+        X.append(Object_cords[0])
+        rx.append(180 - i*angle_x_increment)
+        ry.append(0)
+        rz.append(0)
+        cords.append((X[i], -Y[i], Z[i], rx[i], ry[i], rz[i]))
 
     num_steps = []
     for x in range(8):
@@ -49,12 +49,9 @@ num_images = get_number_of_Images()
 Objekt_cords = [190, -40, 120]
 cords, motorStepps = getCoords(num_images, Objekt_cords)
 
-print(cords[0])
-print(cords[11])
-print(motorStepps[2])
-test = [160,80,80.333330134,180,0,0]
-print(type(cords[0]))
-print(type(test))
+
+print(cords)
+
 
 
 
