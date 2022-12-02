@@ -170,7 +170,6 @@ try:
         for point in cords:
             
             new_coords = point
-            print(point)
             client.variable_putvalue(P90_access, new_coords)    # write new coordinates
 
             # acctivate script on cobotta
@@ -194,6 +193,7 @@ try:
             client.variable_putvalue(I90_access, I90) # write I90 value
 
     stepper_worker(kit.stepper1, motorStepps[rotation], stepper.FORWARD)   # move stepper motor 
+    print("Moving Motor")
     cords.reverse()
 
 except:
