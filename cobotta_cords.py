@@ -60,7 +60,7 @@ def getCoords(num_images, center):
         rx.append(180 - i*angle_x_increment)
         ry.append(0)
         rz.append(0)
-        cords.append((X[i], -Y[i], Z[i], rx[i], ry[i], rz[i]))
+        cords.append([X[i], float(-Y[i]), float(Z[i]), rx[i], ry[i], rz[i]])
 
     num_steps = []
     for x in range(8):
@@ -71,15 +71,12 @@ def getCoords(num_images, center):
 Objekt_cords = [190, -40, 120]
 cords, motorStepps = getCoords(100, Objekt_cords)
 
-#-> probieren ob mehrere hard code listen klappen + dataenttyp list zuweisern (auch unterargumene)
-Test = ([190,40.000034,200,179.232887232,0,0], [190, 112.77055962836147, 153.2332010401509, 114.54545454545455, 0, 0], [190, 116.75943788915978, 142.53860454731438, 106.36363636363636, 0, 0])
+
 
 
 try:
     for x in cords:
-    # for x in Test:
-        # new_coords = [190,40.000034,200,179.232887232,0,0]   # new coordinates for robot
-        # new_coords = x
+
         new_coords = x
 
         print(new_coords)

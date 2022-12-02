@@ -48,7 +48,7 @@ def coordinates(num_images, center):
         rx += [180 - i*angle_x_increment]
         ry += [0]
         rz += [0]
-        cords += [[X[i], -Y[i], Z[i], rx[i], ry[i], rz[i]]] 
+        cords += [[X[i], float(-Y[i]), float(Z[i]), rx[i], ry[i], rz[i]]] 
 
     num_steps = []
     for x in range(8):
@@ -168,7 +168,7 @@ try:
     for rotation in range(8):
         for point in cords:
             
-            new_coords = tuple(point)
+            new_coords = point
             print(point)
             client.variable_putvalue(P90_access, new_coords)    # write new coordinates
 

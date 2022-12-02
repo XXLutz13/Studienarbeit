@@ -35,7 +35,7 @@ def getCoords(num_images, center):
         rx.append(180 - i*angle_x_increment)
         ry.append(0)
         rz.append(0)
-        cords.append((X[i], -Y[i], Z[i], rx[i], ry[i], rz[i]))
+        cords.append([X[i], -Y[i], Z[i], rx[i], ry[i], rz[i]])
 
     num_steps = []
     for x in range(8):
@@ -50,7 +50,11 @@ Objekt_cords = [190, -40, 120]
 cords, motorStepps = getCoords(num_images, Objekt_cords)
 
 
-print(cords)
+test = cords[1]
+print(test)
+print(type(test))
+test2 = [test[0],test[1],test[2],test[3],test[4],test[5]]
+print(test2)
 
 
 
