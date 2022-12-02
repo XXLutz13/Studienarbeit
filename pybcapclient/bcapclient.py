@@ -535,6 +535,7 @@ class BCAPClient:
   def _send_and_recv(self, funcid, args):
     with self._lock:
       self._bcap_send(self._serial, self._version, funcid, args)
+
       (serial, version, hresult, retvals) = self._bcap_recv()
 
       if self._serial >= 0xFFFF:
@@ -552,6 +553,7 @@ class BCAPClient:
 
   def _bcap_send(self, serial, version, funcid, args):
     buf = self._serialize(serial, version, funcid, args)
+
     flags = 0
     if hasattr(socket, 'MSG_NOSIGNAL'):
       flags |= socket.MSG_NOSIGNAL
