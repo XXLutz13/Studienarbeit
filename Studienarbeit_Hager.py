@@ -164,6 +164,7 @@ I90_access = client.controller_getvariable(RC8, "I90", "")   # Object for variab
 I91_access = client.controller_getvariable(RC8, "I91", "")   # Object for variable access
 P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post new Coordinates
 
+print(f"size of cords: {len(cords)}")
 try:
     for rotation in range(8):
         for point in cords:
