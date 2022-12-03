@@ -2,8 +2,7 @@
 
 # Studienarbeit 
 
-## Entwicklung eines Systems zur automatisierten Aufnahme von 
-## Bilder für KI (CNN) mit Unterstützung des Roboters Cobotta ##
+## Entwicklung eines Systems zur automatisierten Aufnahme von <br/> Bilder für KI (CNN) mit Unterstützung des Roboters Cobotta 
  
 # Betreuer: 
     - Stefan Bauer
