@@ -130,8 +130,8 @@ def get_number_of_Images():
 
 # converts Cobotta image to usable numpy formate 
 def convert_image(img):
-    nparry = np.frombuffer(img , dtype=np.uint8)
-    cv_image = cv2.imdecode(nparry, cv2.IMREAD_COLOR)
+    np_img = np.frombuffer(img , dtype=np.uint8)
+    cv_image = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
 
     scale_percent = 40 # percent of original size
     width = int(cv_image.shape[1] * scale_percent / 100)

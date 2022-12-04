@@ -61,6 +61,8 @@ class CAMERA:
             print("image service")
             
             image_buff = self.client.variable_getvalue(self.variable_handler)
+            f = open("TestImage.txt", "w")
+            f.write(str(image_buff))
 
             cv_image = convert_image(image_buff)
             print("cv_image")
@@ -73,8 +75,8 @@ class CAMERA:
 
 # converts Cobotta image to usable numpy formate 
 def convert_image(img):
-    nparry = np.frombuffer(img , dtype=np.uint8)
-    cv_image = cv2.imdecode(nparry, cv2.IMREAD_COLOR)
+    np_img = np.frombuffer(img , dtype=np.uint8)
+    cv_image = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
 
     scale_percent = 40 # percent of original size
     width = int(cv_image.shape[1] * scale_percent / 100)
@@ -90,7 +92,8 @@ client, RC8 = connect_Cobotta('10.50.12.87')
 # open camera connection
 CAM = CAMERA(client=client, IP='10.50.12.88')
 
-for x in range(1):
-    CAM.OneShot('_Test_')
-    time.sleep(1)
+# for x in range(1):
+#     CAM.OneShot('_Test_')
+#     time.sleep(1)
 
+CAM.OneShot('_Test_')
