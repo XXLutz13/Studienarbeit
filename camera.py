@@ -61,8 +61,8 @@ class CAMERA:
             print("image service")
             
             image_buff = self.client.variable_getvalue(self.variable_handler)
-            f = open("TestImage.txt", "w")
-            f.write(str(image_buff))
+            # f = open("TestImage.txt", "w")
+            # f.write(str(image_buff))
 
             cv_image = convert_image(image_buff)
             print("cv_image")

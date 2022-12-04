@@ -1,4 +1,5 @@
-![Titel foto](/Logo_DHBWMosbach.jpg)
+<img src="Logo_DHBWMosbach.jpg" alt="drawing" width="400"/>
+
 
 # Studienarbeit 
 
