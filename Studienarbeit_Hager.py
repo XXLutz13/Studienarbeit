@@ -116,8 +116,9 @@ class CAMERA:
 
             cv_image = convert_image(image_buff)
             # save image to file
-            image_name = 'Images/{}{}.png'
-            cv2.imwrite(image_name.format(datetime.now().strftime("%Y%m%d_%H:%M:%S"), name), cv_image)
+            time_now = datetime.now().strftime("%Y%m%d_%H:%M:%S")
+            image_name = f"Images/{time_now}_{name}.png"
+            cv2.imwrite(image_name, cv_image)
         except:
             raise RuntimeError("faild to capture image")
 
