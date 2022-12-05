@@ -1,4 +1,4 @@
-<img src="Logo_DHBWMosbach.jpg" alt="drawing" width="400"/>
+<img src="Logo_DHBWMosbach.jpg" alt="drawing" width="500"/>
 
 
 # Studienarbeit 
