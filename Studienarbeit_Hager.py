@@ -127,6 +127,9 @@ def get_number_of_Images():
     print('User Input num_images: %s', num_images)
     return num_images
 
+def get_name():
+    return str(input('Label of Object: '))
+
 
 # converts Cobotta image to usable numpy formate 
 def convert_image(img):
@@ -148,12 +151,16 @@ def stepper_worker(stepper, numsteps, direction):
          stepper.onestep(direction=direction)
 
 
+
+
 # establish Cobotta connection
 client, RC8 = connect_Cobotta('10.50.12.87')
 # open camera connection
 CAM = CAMERA(client=client, IP='10.50.12.88')
 
 num_images = get_number_of_Images()
+name = get_name()
+
 
 # calculate arrays with roboter coordinates
 Objekt_cords = [190, -40, 120]
@@ -183,7 +190,7 @@ try:
                 time.sleep(0.1)
 
             # capturing image
-            CAM.OneShot('_Test_')
+            CAM.OneShot(name)
 
             # # evtl delay?
             # time.sleep(2)
@@ -193,7 +200,7 @@ try:
             client.variable_putvalue(I90_access, I90) # write I90 value
 
         stepper_worker(kit.stepper1, motorStepps[rotation], stepper.FORWARD)   # move stepper motor 
-        print("Moving Motor")
+        print("Moving Stepper")
         cords.reverse()
 
 except:
