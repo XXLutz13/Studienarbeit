@@ -118,7 +118,7 @@ class CAMERA:
             # save image to file
             time_now = datetime.now().strftime("%Y%m%d_%H:%M:%S")
             image_name = f"Images/{time_now}_{name}.png"
-            cv2.imwrite(image_name, cv_image)
+            cv2.imwrite(image_name, cv_image, [cv2.IMWRITE_PNG_COMPRESSION, 6])
         except:
             raise RuntimeError("faild to capture image")
 
@@ -149,7 +149,7 @@ def convert_image(img):
 # moves stepper motor
 def stepper_worker(stepper, numsteps, direction):
     for x in range(numsteps):
-         stepper.onestep(direction=direction)
+        stepper.onestep(direction=direction)
 
 
 

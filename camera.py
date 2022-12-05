@@ -68,7 +68,7 @@ class CAMERA:
             print("cv_image")
             # save image to file
             image_name = 'Images/{}{}.png'
-            cv2.imwrite(image_name.format(datetime.now().strftime("%Y%m%d_%H:%M:%S"), name), cv_image)
+            cv2.imwrite(image_name, cv_image)
 
         except:
             raise RuntimeError("faild to capture image")
@@ -83,9 +83,10 @@ def convert_image(img):
     height = int(cv_image.shape[0] * scale_percent / 100)
     dim = (width, height)
     # resize image
-    resized = cv2.resize(cv_image, dim, interpolation = cv2.INTER_AREA)
+    # resized = cv2.resize(cv_image, dim, interpolation = cv2.INTER_AREA)
 
-    return resized
+    # return resized
+    return cv_image
 
 # establish Cobotta connection
 client, RC8 = connect_Cobotta('10.50.12.87')
