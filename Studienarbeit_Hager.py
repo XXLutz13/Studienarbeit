@@ -109,7 +109,7 @@ class CAMERA:
         except:
             raise RuntimeError("can't connect camera")
 
-    def OneShot(self, name):
+    def OneShot(self, path, name):
         try:
             # take and export image from Canon camera 
             self.client.controller_execute(self.camera_handler, 'OneShotFocus', '')
@@ -118,7 +118,7 @@ class CAMERA:
             cv_image = convert_image(image_buff)
             # save image to file
             time_now = datetime.now().strftime("%Y%m%d_%H:%M:%S")
-            image_name = f"Images/{time_now}_{name}.png"
+            image_name = f"{path}/{time_now}_{name}.png"
             cv2.imwrite(image_name, cv_image, [cv2.IMWRITE_PNG_COMPRESSION, 6])
         except:
             raise RuntimeError("faild to capture image")
@@ -138,7 +138,7 @@ def convert_image(img):
     np_img = np.frombuffer(img , dtype=np.uint8)
     cv_image = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
 
-    scale_percent = 40 # percent of original size
+    scale_percent = 30 # percent of original size
     width = int(cv_image.shape[1] * scale_percent / 100)
     height = int(cv_image.shape[0] * scale_percent / 100)
     dim = (width, height)
@@ -163,7 +163,7 @@ CAM = CAMERA(client=client, IP='10.50.12.88')
 num_images = get_number_of_Images()
 name = get_name()
 # create new folder
-# os.mkdir()
+path = os.mkdir.join('Images/',name)
 
 # calculate arrays with roboter coordinates
 Objekt_cords = [190, -40, 120]
@@ -193,7 +193,7 @@ try:
                 time.sleep(0.1)
 
             # capturing image
-            CAM.OneShot(name)
+            CAM.OneShot(path, name)
 
             # # evtl delay?
             # time.sleep(2)

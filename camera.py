@@ -67,7 +67,7 @@ class CAMERA:
             cv_image = convert_image(image_buff)
             print("cv_image")
             # save image to file
-            image_name = 'Images/{}{}.png'
+            image_name = f'Images/{name}.png'
             cv2.imwrite(image_name, cv_image)
 
         except:
@@ -97,4 +97,4 @@ CAM = CAMERA(client=client, IP='10.50.12.88')
 #     CAM.OneShot('_Test_')
 #     time.sleep(1)
 
-CAM.OneShot('_Test_')
+CAM.OneShot('_sizeTest_')
