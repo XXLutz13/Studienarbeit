@@ -17,6 +17,7 @@ import cv2
 import time
 import numpy as np
 from datetime import datetime
+import os
 
 kit = MotorKit()    # MotorKit Object
 
@@ -48,7 +49,7 @@ def coordinates(num_images, center):
         rx += [180 - i*angle_x_increment]
         ry += [0]
         rz += [0]
-        cords += [[X[i], float(-Y[i]), float(Z[i]), rx[i], ry[i], rz[i]]] 
+        cords += [[X[i], float(-Y[i]), float(Z[i]), rx[i], ry[i], rz[i]]]
 
     num_steps = []
     for x in range(8):
@@ -161,7 +162,8 @@ CAM = CAMERA(client=client, IP='10.50.12.88')
 
 num_images = get_number_of_Images()
 name = get_name()
-
+# create new folder
+# os.mkdir()
 
 # calculate arrays with roboter coordinates
 Objekt_cords = [190, -40, 120]
