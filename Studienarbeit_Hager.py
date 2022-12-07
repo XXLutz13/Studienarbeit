@@ -45,11 +45,11 @@ def coordinates(num_images, center):
     cords = []
     angle_x_increment = 90/(spacing-1)
     for i in range(spacing):
-        X += [center[0]]
-        rx += [180 - i*angle_x_increment]
-        ry += [0]
-        rz += [0]
-        cords += [[X[i], float(-Y[i]), float(Z[i]), rx[i], ry[i], rz[i]]]
+        X.append([center[0]])
+        rx.append([180 - i*angle_x_increment])
+        ry.append(0)
+        rz.append(0)
+        cords.append([[X[i], float(-Y[i]), float(Z[i]), rx[i], ry[i], rz[i]]])
 
     num_steps = []
     for x in range(8):
