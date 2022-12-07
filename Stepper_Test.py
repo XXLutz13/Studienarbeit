@@ -15,5 +15,8 @@ import time
 kit = MotorKit()
 
 for i in range(400):
-    kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.DOUBLE)
-    time.sleep(0.05)
+    # kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.DOUBLE)
+    # kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.SINGLE)
+    # kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.INTERLEAVE)
+    kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.MICROSTEP)
+    time.sleep(0.01)

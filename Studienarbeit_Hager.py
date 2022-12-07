@@ -163,7 +163,8 @@ CAM = CAMERA(client=client, IP='10.50.12.88')
 num_images = get_number_of_Images()
 name = get_name()
 # create new folder
-path = os.mkdir.join('Images/',name)
+path = os.path.join('Images/',name)
+os.mkdir(path)
 
 # calculate arrays with roboter coordinates
 Objekt_cords = [190, -40, 120]
