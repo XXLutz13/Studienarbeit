@@ -10,10 +10,10 @@
 
 from adafruit_motorkit import MotorKit
 from adafruit_motor import stepper
-
+import time
 
 kit = MotorKit()
 
-for i in range(100):
+for i in range(400):
     kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.DOUBLE)
-
+    time.sleep(0.05)
