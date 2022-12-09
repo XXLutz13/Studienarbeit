@@ -19,4 +19,5 @@ for i in range(400):
     # kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.SINGLE)
     # kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.INTERLEAVE)
     kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.MICROSTEP)
-    time.sleep(0.01)
+    # time.sleep(0.01)
+    
