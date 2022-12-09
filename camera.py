@@ -57,9 +57,13 @@ class CAMERA:
 
     def OneShot(self, name):
         try:
-            image = self.client.controller_execute(self.camera_handler, 'OneShotFocus', '')
-            print("image service")
             
+            # options = ['FOCUS_MODE=auto','EXPOSURE=manual','SHUTTER=150','GAIN=8']
+            # options = ['SHUTTER=150']
+            image = self.client.controller_execute(self.camera_handler, 'OneShotFocus',options) #'EXPOSURE=manual', ,'GAIN=8','SHUTTER=150'
+            # image = self.client.controller_execute(self.camera_handler,"SetParameter",options) 
+            print("image service")
+
             image_buff = self.client.variable_getvalue(self.variable_handler)
             # f = open("TestImage.txt", "w")
             # f.write(str(image_buff))
@@ -90,8 +94,12 @@ def convert_image(img):
 
 # establish Cobotta connection
 client, RC8 = connect_Cobotta('10.50.12.87')
+# client, RC8 = connect_Cobotta('192.168.0.1')
+
 # open camera connection
 CAM = CAMERA(client=client, IP='10.50.12.88')
+# CAM = CAMERA(client=client, IP='192.168.0.90')
+
 
 # for x in range(1):
 #     CAM.OneShot('_Test_')

@@ -53,7 +53,7 @@ def coordinates(num_images, center):
 
     num_steps = []
     for x in range(8):
-        num_steps += [50]
+        num_steps += [800]
     
     return cords, num_steps
 
@@ -150,15 +150,15 @@ def convert_image(img):
 # moves stepper motor
 def stepper_worker(stepper, numsteps, direction):
     for x in range(numsteps):
-        stepper.onestep(direction=direction)
+        stepper.onestep(direction=direction, style=stepper.MICROSTEP)
 
 
 
 
 # establish Cobotta connection
-client, RC8 = connect_Cobotta('10.50.12.87')
+client, RC8 = connect_Cobotta('192.168.0.1')
 # open camera connection
-CAM = CAMERA(client=client, IP='10.50.12.88')
+CAM = CAMERA(client=client, IP='192.168.0.90')
 
 num_images = get_number_of_Images()
 name = get_name()
@@ -175,7 +175,6 @@ I90_access = client.controller_getvariable(RC8, "I90", "")   # Object for variab
 I91_access = client.controller_getvariable(RC8, "I91", "")   # Object for variable access
 P90_access = client.controller_getvariable(RC8, "P90", "")   # Object to post new Coordinates
 
-print(f"size of cords: {len(cords)}")
 try:
     for rotation in range(8):
         for point in cords:
@@ -204,7 +203,6 @@ try:
             client.variable_putvalue(I90_access, I90) # write I90 value
 
         stepper_worker(kit.stepper1, motorStepps[rotation], stepper.FORWARD)   # move stepper motor 
-        print("Moving Stepper")
         cords.reverse()
 
 except:
