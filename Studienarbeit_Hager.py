@@ -148,7 +148,7 @@ def convert_image(img):
 # moves stepper motor
 def stepper_worker(stepper, numsteps, direction):
     for x in range(numsteps):
-         stepper.onestep(direction=direction)
+        stepper.onestep(direction=direction)
 
 
 

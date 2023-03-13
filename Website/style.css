@@ -1,0 +1,141 @@
+body {
+    background: #2c3e50;
+    margin: 0;
+    padding: 0;
+}
+
+.page-header{
+    background-color: #ffffff;
+}
+
+
+/* Navigation */
+.navigation {
+    box-sizing: border-box;
+    /* background-color: #3587A4; */
+    background-color: #ffffff;
+    overflow: auto;
+    padding: 18px 50px;
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.container {
+    margin-right:auto;
+    margin-left:auto;
+    padding-right:20px;
+    padding-left:20px;
+    padding-top:20px;
+}
+
+
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    color: #00000088;
+    display: inline-block;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin: 0;
+    padding: 20px 18px 10px 18px;
+    text-transform: uppercase;
+}
+
+.header-item {
+    height: 48px;
+}
+
+.active {
+    color: #C00613;
+}
+
+a:hover {
+    color: #C00613;
+}
+
+.header-link {
+    display: block;
+    white-space: nowrap;
+    font-style: inherit;
+    font-weight: inherit;
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+/*wird glaub nicht gebraucht*/
+.search {
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    color: #AAA;
+    padding: 20px;
+    margin: 50px auto 0px auto;
+    width: 77%;
+}
+
+.video-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* unused */
+.video-border {
+    /* height: 200px;
+    width: 200px; */
+    background-color: #555;
+    border-radius: 10%;
+    border: 10px solid #34495e;
+}
+
+.module-border-wrap {
+    width: 400px;
+    padding: 1rem;
+    position: relative;
+    background: linear-gradient(to right, #c0392b, #8e44ad);
+    padding: 5px;
+}
+
+#overlay {
+    width: 60%;
+    margin: 3% auto;
+    height: 80%;
+    background-color: #95a5a6;
+    border-radius: 40px;
+}
+
+form hr {
+    width: 30%;
+}
+
+.heading-line {
+    width: 45%;
+}
+
+.form-heading {
+    font-family: 'Oxygen', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.dataLabel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
