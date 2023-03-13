@@ -2,7 +2,7 @@ import requests
 
 # set up the URL and image file path
 url = "http://createDatasetInputs.com"
-image_path = "Website/Images/rot.png"
+image_path = "Website/Images"
 
 # open the image file and read its contents
 with open(image_path, 'rb') as f:
